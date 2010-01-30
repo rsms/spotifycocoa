@@ -1,0 +1,4 @@
+#import <spotify/api.h>
+#ifdef __OBJC__
+	#import <Cocoa/Cocoa.h>
+#endif
