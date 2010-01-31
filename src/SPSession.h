@@ -1,17 +1,18 @@
 #import <Spotify/api.h>
 
 @class SPUser;
+@protocol SPSessionDelegate;
 
 @interface SPSession : NSObject {
 	sp_session_config _config;
 	sp_session *_session;
 	SPUser *_user;
-	id _delegate;
+	NSObject<SPSessionDelegate> *_delegate;
 	CFRunLoopRef _runloop;
 	CFRunLoopSourceRef _runloopSource;
 }
 @property(readonly) SPUser *user;
-@property(assign) id delegate;
+@property(assign) NSObject<SPSessionDelegate> *delegate;
 @property(readonly) CFRunLoopRef runloop;
 @property(readonly) CFRunLoopSourceRef runloopSource;
 @property(readonly) sp_session *session;

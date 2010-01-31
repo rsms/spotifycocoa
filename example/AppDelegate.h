@@ -1,6 +1,6 @@
 #import <Spotify/Spotify.h>
 
-@interface AppDelegate : NSObject <NSApplicationDelegate> {
+@interface AppDelegate : NSObject <NSApplicationDelegate, SPSessionDelegate> {
 	NSWindow *_window;
 	NSTextField *_usernameTextField;
 	NSSecureTextField *_passwordTextField;
