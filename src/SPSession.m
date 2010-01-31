@@ -3,7 +3,7 @@
 
 static NSString *kSCErrorDomain = @"com.spotify.libspotifycocoa.error";
 
-static void *_appKey = NULL;
+static const uint8_t *_appKey = NULL;
 static size_t _appKeySize = 0;
 static char *_cacheLocation = NULL;
 static char *_settingsLocation = NULL;
@@ -53,17 +53,17 @@ static id _sharedSession = NULL;
 
 #define CB_INVOKE_DELEGATE1(_sess, _sign) \
 	do {\
-		id _delegate = _sess.delegate;\
-		if (_delegate && [_delegate respondsToSelector:@selector(_sign)]) {\
-			[_delegate _sign _sess];\
+		id __deleg = _sess.delegate;\
+		if (__deleg && [__deleg respondsToSelector:@selector(_sign)]) {\
+			[__deleg _sign _sess];\
 		}\
 	} while(0)
 
 #define CB_INVOKE_DELEGATE2(_sess, _signPart1, _signPart2, _arg) \
 	do {\
-		id _delegate = _sess.delegate;\
-		if (_delegate && [_delegate respondsToSelector:@selector(_signPart1 _signPart2)]) {\
-			[_delegate _signPart1 _sess _signPart2 _arg];\
+		id __deleg = _sess.delegate;\
+		if (__deleg && [__deleg respondsToSelector:@selector(_signPart1 _signPart2)]) {\
+			[__deleg _signPart1 _sess _signPart2 _arg];\
 		}\
 	} while(0)
 
@@ -80,20 +80,13 @@ static void connection_error(sp_session *session, sp_error error) {
 /**
  * This callback is called when an attempt to login has succeeded or failed.
  */
-static void logged_in(sp_session *session, sp_error error) {
+static void logged_in(sp_session *session, sp_error status) {
 	SPSession *sess = (SPSession *)sp_session_userdata(session);
 
-	if (SP_ERROR_OK != error) {
-		CB_INVOKE_DELEGATE2(sess, session:, loginDidFailWithError:, [NSError spotifyErrorWithCode:error]);
+	if (status != SP_ERROR_OK) {
+		CB_INVOKE_DELEGATE2(sess, session:, singInError:, [NSError spotifyErrorWithCode:status]);
 		return;
 	}
-
-	// XXX DEBUG Let us print the nice message...
-	sp_user *me = sp_session_user(session);
-	const char *my_name = (sp_user_is_loaded(me) ?
-												 sp_user_display_name(me) :
-												 sp_user_canonical_name(me));
-	NSLog(@"Logged in as user %s", my_name);
 
 	CB_INVOKE_DELEGATE1(sess, sessionDidBegin:);
 }
@@ -124,8 +117,11 @@ static void logged_out(sp_session *session) {
  * to have proper synchronization!
  */
 static void notify_main_thread(sp_session *session) {
-	NSLog(@"TODO %s", __func__);
+	SPSession *sess = (SPSession *)sp_session_userdata(session);
+	//NSLog(@"TODO %s", __func__);
 	//pthread_kill(g_main_thread, SIGIO);
+	CFRunLoopSourceSignal(sess.runloopSource);
+	CFRunLoopWakeUp(sess.runloop);
 }
 
 /**
@@ -224,10 +220,99 @@ static sp_session_callbacks _callbacks = {
 };
 
 // -------------
+#pragma mark -
+#pragma mark Runloop source callbacks
+
+struct sp_rlsrc_ctx {
+	SPSession *self;
+	sp_session *session;
+};
+
+/*static const void *rlsrc_retain(const void *info) {
+	[(NSObject *)info retain];
+	return info;
+}
+
+static void rlsrc_release(const void *info) {
+	[(NSObject *)info release];
+}*/
+
+// Callback invoked when a version 0 CFRunLoopSource object is added to a run
+// loop mode.
+static void rlsrc_schedule(void *info, CFRunLoopRef rl, CFStringRef mode) {
+	//struct sp_rlsrc_ctx *ctx = (struct sp_rlsrc_ctx *)info;
+}
+
+// A cancel callback for the run loop source. This callback is called when the
+// source is removed from a run loop mode.
+static void rlsrc_cancel(void *info, CFRunLoopRef rl, CFStringRef mode) {
+	//struct sp_rlsrc_ctx *ctx = (struct sp_rlsrc_ctx *)info;
+}
+
+// A perform callback for the run loop source. This callback is called when the
+// source has fired.
+static void rlsrc_perform(void *info) {
+	struct sp_rlsrc_ctx *ctx = (struct sp_rlsrc_ctx *)info;
+	int timeout = -1;
+	NSLog(@"rlsrc_perform");
+	sp_session_process_events(ctx->session, &timeout);
+}
+
+
+// ----------------------------------------------------------------------------
+
+@interface SPSession (Private)
++ (void)_setup_cacheLocation:(NSString *)cacheDirname
+						settingsLocation:(NSString *)settingsDirname
+									 userAgent:(NSString *)userAgentName;
+@end
 
 @implementation SPSession
 
-@synthesize username=_username, password=_password, delegate=_delegate;
+@synthesize delegate=_delegate, runloop=_runloop, runloopSource=_runloopSource;
+
++ (void)_setup_cacheLocation:(NSString *)cacheDirname
+					 settingsLocation:(NSString *)settingsDirname
+									userAgent:(NSString *)userAgent
+{
+	NSArray *paths;
+	NSString *basePath;
+
+	// cache dir
+	if (!cacheDirname) {
+		paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+		basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : NSTemporaryDirectory();
+		cacheDirname = [basePath stringByAppendingPathComponent:@"com.spotify.embedded"];
+	}
+	if (_cacheLocation) free((void *)_cacheLocation);
+	assert((_cacheLocation = strdup([cacheDirname UTF8String])) != NULL);
+
+	// settings dir
+	if (!settingsDirname) {
+		paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+		basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : NSTemporaryDirectory();
+		settingsDirname = [basePath stringByAppendingPathComponent:@"Spotify (embedded)"];
+	}
+	if (_settingsLocation) free(_settingsLocation);
+	assert((_settingsLocation = strdup([settingsDirname UTF8String])) != NULL);
+
+	// user agent
+	if (_userAgent) free(_userAgent);
+	assert((_userAgent = strdup(userAgent ? [userAgent UTF8String] : "spotify-cocoa")) != NULL);
+}
+
++ (void)setupWithApplicationKey:(const uint8_t *)appkey
+											 ofLength:(size_t)appkeyLength
+									cacheLocation:(NSString *)cacheDirname
+							 settingsLocation:(NSString *)settingsDirname
+											userAgent:(NSString *)userAgent
+{
+	// Set app key
+	_appKeySize = appkeyLength;
+	_appKey = appkey;
+	[self _setup_cacheLocation:cacheDirname settingsLocation:settingsDirname userAgent:userAgent];
+}
+
 
 + (void)setupWithApplicationKey:(NSData *)appkey
 									cacheLocation:(NSString *)cacheDirname
@@ -235,43 +320,26 @@ static sp_session_callbacks _callbacks = {
 											userAgent:(NSString *)userAgent
 {
 	// Copy app key
-	if (_appKey) {
-		free(_appKey);
-		_appKey = NULL;
-	}
 	_appKeySize = [appkey length];
 	_appKey = malloc(_appKeySize);
-	assert(memcpy(_appKey, [appkey bytes], _appKeySize) != NULL);
-
-	// Save ref to cache dir
-	NSString *s = cacheDirname ? cacheDirname : NSTemporaryDirectory();
-	if (_cacheLocation) free((void *)_cacheLocation);
-	assert((_cacheLocation = strdup([s UTF8String])) != NULL);
-
-	// Save ref to settings dir
-	s = settingsDirname ? settingsDirname : NSTemporaryDirectory();
-	if (_settingsLocation) free(_settingsLocation);
-	assert((_settingsLocation = strdup([s UTF8String])) != NULL);
-
-	// Save ref to settings dir
-	if (_userAgent) free(_userAgent);
-	assert((_userAgent = strdup(userAgent ? [userAgent UTF8String] : "spotify-cocoa")) != NULL);
+	assert(memcpy((uint8_t *)_appKey, [appkey bytes], _appKeySize) != NULL);
+	[self _setup_cacheLocation:cacheDirname settingsLocation:settingsDirname userAgent:userAgent];
 }
+
 
 + (id)sharedSession {
 	@synchronized(self) {
 		if (_sharedSession == NULL)
 			_sharedSession = [[self alloc] init];
-		return _sharedSession;
 	}
+	return _sharedSession;
 }
 
 #pragma mark -
 #pragma mark Initialization and finalization
 
-
-- (int)_initSession {
-	sp_error error;
+- (int)_initSettingError:(NSError **)err {
+	sp_error rc;
 
 	// Always do this. It allows libspotify to check for
 	// header/library inconsistencies.
@@ -307,19 +375,82 @@ static sp_session_callbacks _callbacks = {
 
 	// Initialize session
 	assert(_session == NULL);
-	error = sp_session_init(&_config, &_session);
+	rc = sp_session_init(&_config, &_session);
 
-	if (SP_ERROR_OK != error) {
-		fprintf(stderr, "failed to create session: %s\n",
-						sp_error_message(error));
-		return error;
+	if (rc != SP_ERROR_OK) {
+		NSError *e = [NSError spotifyErrorWithCode:rc];
+		if (err) {
+			*err = e;
+		} else {
+			CB_INVOKE_DELEGATE2(self, session:, setupError:, e);
+		}
+		return rc;
 	}
 
-	if (_delegate && [_delegate respondsToSelector:@selector(sessionWillBegin:)]) {
-		[_delegate sessionWillBegin:self];
+	_runloop = CFRunLoopGetMain();
+
+	struct sp_rlsrc_ctx *info = calloc(1, sizeof(struct sp_rlsrc_ctx));
+	info->self = self;
+	info->session = _session;
+
+	CFRunLoopSourceContext ctx;
+	ctx.version = 0;
+	ctx.info = (void *)info;
+	ctx.retain = NULL;//&rlsrc_retain;
+	ctx.release = NULL;//&rlsrc_release;
+	ctx.copyDescription = NULL;
+	ctx.equal = NULL;
+	ctx.hash = NULL;
+	ctx.schedule = &rlsrc_schedule;
+	ctx.cancel = &rlsrc_cancel;
+	ctx.perform = &rlsrc_perform;
+
+	_runloopSource = CFRunLoopSourceCreate(kCFAllocatorDefault, 0, &ctx);
+
+	CFRunLoopAddSource(_runloop, _runloopSource, kCFRunLoopDefaultMode);
+
+	CB_INVOKE_DELEGATE1(self, sessionDidInitialize:);
+	return rc;
+}
+
+- (BOOL)_initIfNeededSettingError:(NSError **)err {
+	if (_session != NULL)
+		return YES;
+	@synchronized(self) {
+		if (_session != NULL)
+			return YES;
+		return [self _initSettingError:err] == SP_ERROR_OK;
+	}
+	return SP_ERROR_OK;
+}
+
+#pragma mark -
+#pragma mark User
+
+- (BOOL)signInUserNamed:(NSString *)username withPassphrase:(NSString *)passphrase error:(NSError **)err {
+	sp_error rc;
+
+	if (![self _initIfNeededSettingError:err])
+		return NO;
+
+	if (_delegate && [_delegate respondsToSelector:@selector(session:shouldBeginForUserNamed:)]) {
+		if (![_delegate session:self shouldBeginForUserNamed:username]) {
+			// aborted by delegate
+			*err = [NSError spotifyErrorWithFormat:@"Delegate %@ did not allow user %@ to sign in",
+							_delegate, username];
+			return NO;
+		}
 	}
 
-	return error;
+	// Login using the credentials given on the command line.
+	rc = sp_session_login(_session, [username UTF8String], [passphrase UTF8String]);
+
+	if (rc != SP_ERROR_OK) {
+		*err = [NSError spotifyErrorWithCode:rc];
+		return NO;
+	}
+
+	return YES;
 }
 
 #pragma mark -
@@ -330,8 +461,8 @@ static sp_session_callbacks _callbacks = {
 		if (!_user) {
 			_user = [[SPUser alloc] initWithUserStruct:sp_session_user(_session)];
 		}
-		return _user;
 	}
+	return _user;
 }
 
 @end

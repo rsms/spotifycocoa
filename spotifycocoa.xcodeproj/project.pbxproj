@@ -10,26 +10,26 @@
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		3A8C1C731114A52800CEF3B3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C1C711114A52800CEF3B3 /* AppDelegate.m */; };
 		3A8C1C741114A52800CEF3B3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C1C721114A52800CEF3B3 /* main.m */; };
-		3A8C1C7C1114A5DD00CEF3B3 /* SPSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A8C1C7A1114A5DD00CEF3B3 /* SPSession.h */; };
-		3A8C1C7D1114A5DD00CEF3B3 /* SPSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C1C7B1114A5DD00CEF3B3 /* SPSession.m */; };
-		3A8C1C801114A60F00CEF3B3 /* spotifycocoa.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A8C1C5E1114A49300CEF3B3 /* spotifycocoa.dylib */; };
-		3A8C1C821114A62D00CEF3B3 /* spotifycocoa.dylib in Copy frameworks */ = {isa = PBXBuildFile; fileRef = 3A8C1C5E1114A49300CEF3B3 /* spotifycocoa.dylib */; };
-		3A8C1C851114A64D00CEF3B3 /* spotifycocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A8C1C841114A64D00CEF3B3 /* spotifycocoa.h */; };
-		3A8C1CA61114A94B00CEF3B3 /* libopenspotify.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A8C1CA51114A94B00CEF3B3 /* libopenspotify.dylib */; };
-		3ACE91FC1114BA4D0001B94A /* SPUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 3ACE91FA1114BA4D0001B94A /* SPUser.h */; };
-		3ACE91FD1114BA4D0001B94A /* SPUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACE91FB1114BA4D0001B94A /* SPUser.m */; };
-		3ACE92201114EE870001B94A /* prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 3ACE921F1114EE870001B94A /* prefix.pch */; };
-		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
+		3ACE92A1111513F60001B94A /* Spotify.h in Headers */ = {isa = PBXBuildFile; fileRef = 3ACE929F111513ED0001B94A /* Spotify.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3ACE92A2111513FF0001B94A /* SPSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A8C1C7A1114A5DD00CEF3B3 /* SPSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3ACE92A4111514030001B94A /* SPUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 3ACE91FA1114BA4D0001B94A /* SPUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3ACE92B21115149F0001B94A /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ACE9267111511F40001B94A /* Spotify.framework */; };
+		3ACE92B3111514A40001B94A /* Spotify.framework in Copy frameworks */ = {isa = PBXBuildFile; fileRef = 3ACE9267111511F40001B94A /* Spotify.framework */; };
+		3ACE92C3111516220001B94A /* api.h in Headers */ = {isa = PBXBuildFile; fileRef = 3ACE92191114EE3D0001B94A /* api.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3ACE92C51115166C0001B94A /* SPSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C1C7B1114A5DD00CEF3B3 /* SPSession.m */; };
+		3ACE92C61115166C0001B94A /* SPUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACE91FB1114BA4D0001B94A /* SPUser.m */; };
+		3ACE9563111528510001B94A /* libopenspotify.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ACE9562111528510001B94A /* libopenspotify.dylib */; };
+		3ACE9566111528550001B94A /* libopenspotify.dylib in Copy frameworks */ = {isa = PBXBuildFile; fileRef = 3ACE9562111528510001B94A /* libopenspotify.dylib */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3A8C1C7E1114A60B00CEF3B3 /* PBXContainerItemProxy */ = {
+		3ACE92FD111517AA0001B94A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 3A8C1C5D1114A49300CEF3B3;
-			remoteInfo = spotifycocoa;
+			remoteGlobalIDString = 3ACE9266111511F40001B94A /* Spotify */;
+			remoteInfo = Spotify;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -40,7 +40,18 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3A8C1C821114A62D00CEF3B3 /* spotifycocoa.dylib in Copy frameworks */,
+				3ACE92B3111514A40001B94A /* Spotify.framework in Copy frameworks */,
+			);
+			name = "Copy frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3ACE9288111512F10001B94A /* Copy frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3ACE9566111528550001B94A /* libopenspotify.dylib in Copy frameworks */,
 			);
 			name = "Copy frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -50,32 +61,33 @@
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
-		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		1DDD58150DA1D0A300B32029 /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		3A8C1C5E1114A49300CEF3B3 /* spotifycocoa.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = spotifycocoa.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A8C1C6B1114A4FF00CEF3B3 /* prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = prefix.pch; path = example/prefix.pch; sourceTree = "<group>"; };
 		3A8C1C701114A52800CEF3B3 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = example/AppDelegate.h; sourceTree = "<group>"; };
 		3A8C1C711114A52800CEF3B3 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = example/AppDelegate.m; sourceTree = "<group>"; };
 		3A8C1C721114A52800CEF3B3 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = example/main.m; sourceTree = "<group>"; };
 		3A8C1C7A1114A5DD00CEF3B3 /* SPSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPSession.h; path = src/SPSession.h; sourceTree = "<group>"; };
 		3A8C1C7B1114A5DD00CEF3B3 /* SPSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPSession.m; path = src/SPSession.m; sourceTree = "<group>"; };
-		3A8C1C841114A64D00CEF3B3 /* spotifycocoa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = spotifycocoa.h; path = src/spotifycocoa.h; sourceTree = "<group>"; };
-		3A8C1CA51114A94B00CEF3B3 /* libopenspotify.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopenspotify.dylib; path = ../openspotify/build/Debug/libopenspotify.dylib; sourceTree = SOURCE_ROOT; };
 		3ACE91FA1114BA4D0001B94A /* SPUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPUser.h; path = src/SPUser.h; sourceTree = "<group>"; };
 		3ACE91FB1114BA4D0001B94A /* SPUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPUser.m; path = src/SPUser.m; sourceTree = "<group>"; };
 		3ACE92191114EE3D0001B94A /* api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = api.h; path = libspotify/include/spotify/api.h; sourceTree = "<group>"; };
 		3ACE921F1114EE870001B94A /* prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = prefix.pch; path = src/prefix.pch; sourceTree = "<group>"; };
+		3ACE9267111511F40001B94A /* Spotify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Spotify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3ACE9268111511F40001B94A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = resources/Info.plist; sourceTree = "<group>"; };
+		3ACE92801115126C0001B94A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = example/Info.plist; sourceTree = "<group>"; };
+		3ACE929F111513ED0001B94A /* Spotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Spotify.h; path = src/Spotify.h; sourceTree = "<group>"; };
+		3ACE9562111528510001B94A /* libopenspotify.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopenspotify.dylib; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		3A8C1C5C1114A49300CEF3B3 /* Frameworks */ = {
+		3ACE9265111511F40001B94A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A8C1CA61114A94B00CEF3B3 /* libopenspotify.dylib in Frameworks */,
+				3ACE9563111528510001B94A /* libopenspotify.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,7 +96,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-				3A8C1C801114A60F00CEF3B3 /* spotifycocoa.dylib in Frameworks */,
+				3ACE92B21115149F0001B94A /* Spotify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,8 +106,10 @@
 		080E96DDFE201D6D7F000001 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				3ACE9268111511F40001B94A /* Info.plist */,
+				3ACE92191114EE3D0001B94A /* api.h */,
+				3ACE929F111513ED0001B94A /* Spotify.h */,
 				3ACE921F1114EE870001B94A /* prefix.pch */,
-				3A8C1C841114A64D00CEF3B3 /* spotifycocoa.h */,
 				3A8C1C7A1114A5DD00CEF3B3 /* SPSession.h */,
 				3A8C1C7B1114A5DD00CEF3B3 /* SPSession.m */,
 				3ACE91FA1114BA4D0001B94A /* SPUser.h */,
@@ -104,29 +118,11 @@
 			name = Source;
 			sourceTree = "<group>";
 		};
-		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
-			);
-			name = "Linked Frameworks";
-			sourceTree = "<group>";
-		};
-		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
-				13E42FB307B3F0F600E4EEF1 /* CoreData.framework */,
-				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
-			);
-			name = "Other Frameworks";
-			sourceTree = "<group>";
-		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				8D1107320486CEB800E47090 /* example.app */,
-				3A8C1C5E1114A49300CEF3B3 /* spotifycocoa.dylib */,
+				3ACE9267111511F40001B94A /* Spotify.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -145,10 +141,10 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3ACE92191114EE3D0001B94A /* api.h */,
-				3A8C1CA51114A94B00CEF3B3 /* libopenspotify.dylib */,
-				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
-				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+				3ACE9562111528510001B94A /* libopenspotify.dylib */,
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -156,6 +152,7 @@
 		3A8C1C6C1114A50500CEF3B3 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				3ACE92801115126C0001B94A /* Info.plist */,
 				3A8C1C6B1114A4FF00CEF3B3 /* prefix.pch */,
 				3A8C1C721114A52800CEF3B3 /* main.m */,
 				3A8C1C701114A52800CEF3B3 /* AppDelegate.h */,
@@ -169,36 +166,38 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		3A8C1C5A1114A49300CEF3B3 /* Headers */ = {
+		3ACE9262111511F40001B94A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A8C1C7C1114A5DD00CEF3B3 /* SPSession.h in Headers */,
-				3A8C1C851114A64D00CEF3B3 /* spotifycocoa.h in Headers */,
-				3ACE91FC1114BA4D0001B94A /* SPUser.h in Headers */,
-				3ACE92201114EE870001B94A /* prefix.pch in Headers */,
+				3ACE92C3111516220001B94A /* api.h in Headers */,
+				3ACE92A1111513F60001B94A /* Spotify.h in Headers */,
+				3ACE92A4111514030001B94A /* SPUser.h in Headers */,
+				3ACE92A2111513FF0001B94A /* SPSession.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		3A8C1C5D1114A49300CEF3B3 /* spotifycocoa */ = {
+		3ACE9266111511F40001B94A /* Spotify */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3A8C1C681114A4DA00CEF3B3 /* Build configuration list for PBXNativeTarget "spotifycocoa" */;
+			buildConfigurationList = 3ACE926B111511F40001B94A /* Build configuration list for PBXNativeTarget "Spotify" */;
 			buildPhases = (
-				3A8C1C5A1114A49300CEF3B3 /* Headers */,
-				3A8C1C5B1114A49300CEF3B3 /* Sources */,
-				3A8C1C5C1114A49300CEF3B3 /* Frameworks */,
+				3ACE9262111511F40001B94A /* Headers */,
+				3ACE9263111511F40001B94A /* Resources */,
+				3ACE9264111511F40001B94A /* Sources */,
+				3ACE9265111511F40001B94A /* Frameworks */,
+				3ACE9288111512F10001B94A /* Copy frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = spotifycocoa;
-			productName = spotifycocoa;
-			productReference = 3A8C1C5E1114A49300CEF3B3 /* spotifycocoa.dylib */;
-			productType = "com.apple.product-type.library.dynamic";
+			name = Spotify;
+			productName = spocoa;
+			productReference = 3ACE9267111511F40001B94A /* Spotify.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 		8D1107260486CEB800E47090 /* Example */ = {
 			isa = PBXNativeTarget;
@@ -212,7 +211,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				3A8C1C7F1114A60B00CEF3B3 /* PBXTargetDependency */,
+				3ACE92FE111517AA0001B94A /* PBXTargetDependency */,
 			);
 			name = Example;
 			productInstallPath = "$(HOME)/Applications";
@@ -233,17 +232,23 @@
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* Example */,
-				3A8C1C5D1114A49300CEF3B3 /* spotifycocoa */,
+				3ACE9266111511F40001B94A /* Spotify */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3ACE9263111511F40001B94A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D1107290486CEB800E47090 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -251,12 +256,12 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		3A8C1C5B1114A49300CEF3B3 /* Sources */ = {
+		3ACE9264111511F40001B94A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A8C1C7D1114A5DD00CEF3B3 /* SPSession.m in Sources */,
-				3ACE91FD1114BA4D0001B94A /* SPUser.m in Sources */,
+				3ACE92C51115166C0001B94A /* SPSession.m in Sources */,
+				3ACE92C61115166C0001B94A /* SPUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,10 +277,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3A8C1C7F1114A60B00CEF3B3 /* PBXTargetDependency */ = {
+		3ACE92FE111517AA0001B94A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3A8C1C5D1114A49300CEF3B3 /* spotifycocoa */;
-			targetProxy = 3A8C1C7E1114A60B00CEF3B3 /* PBXContainerItemProxy */;
+			target = 3ACE9266111511F40001B94A /* Spotify */;
+			targetProxy = 3ACE92FD111517AA0001B94A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -301,24 +306,29 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		3A8C1C5F1114A49400CEF3B3 /* Debug */ = {
+		3ACE9269111511F40001B94A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = src/prefix.pch;
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libspotify/include\"";
-				INSTALL_PATH = /usr/local/lib;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libspotify\"";
+				INFOPLIST_FILE = resources/Info.plist;
+				INSTALL_PATH = "@rpath";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../openspotify/build/Debug\"",
+					"\"$(SRCROOT)/../openspotify/build/Release\"",
+					"\"$(SRCROOT)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -327,11 +337,11 @@
 					AppKit,
 				);
 				PREBINDING = NO;
-				PRODUCT_NAME = spotifycocoa;
+				PRODUCT_NAME = Spotify;
 			};
 			name = Debug;
 		};
-		3A8C1C601114A49400CEF3B3 /* Release */ = {
+		3ACE926A111511F40001B94A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -339,15 +349,20 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = src/prefix.pch;
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libspotify/include\"";
-				INSTALL_PATH = /usr/local/lib;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libspotify\"";
+				INFOPLIST_FILE = resources/Info.plist;
+				INSTALL_PATH = "@rpath";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../openspotify/build/Debug\"",
+					"\"$(SRCROOT)/../openspotify/build/Release\"",
+					"\"$(SRCROOT)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -356,7 +371,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
-				PRODUCT_NAME = spotifycocoa;
+				PRODUCT_NAME = Spotify;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -366,6 +381,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/build/Debug\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
@@ -374,9 +393,11 @@
 				GCC_PREFIX_HEADER = example/prefix.pch;
 				INFOPLIST_FILE = example/Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/build/Debug\"",
+					"\"$(SRCROOT)/../openspotify/build/Release\"",
 				);
 				PRODUCT_NAME = example;
 			};
@@ -387,14 +408,20 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/build/Release\"",
+				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = example/prefix.pch;
 				INFOPLIST_FILE = example/Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/build/Debug\"",
+					"\"$(SRCROOT)/build/Release\"",
+					"\"$(SRCROOT)/../openspotify/build/Release\"",
 				);
 				PRODUCT_NAME = example;
 			};
@@ -403,7 +430,7 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -411,6 +438,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				SDKROOT = macosx10.6;
+				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
 		};
@@ -429,11 +457,11 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3A8C1C681114A4DA00CEF3B3 /* Build configuration list for PBXNativeTarget "spotifycocoa" */ = {
+		3ACE926B111511F40001B94A /* Build configuration list for PBXNativeTarget "Spotify" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3A8C1C5F1114A49400CEF3B3 /* Debug */,
-				3A8C1C601114A49400CEF3B3 /* Release */,
+				3ACE9269111511F40001B94A /* Debug */,
+				3ACE926A111511F40001B94A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
