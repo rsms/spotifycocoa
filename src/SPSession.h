@@ -1,4 +1,4 @@
-#import <spotify/api.h>
+#import <Spotify/api.h>
 
 @class SPUser;
 
