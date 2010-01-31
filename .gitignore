@@ -5,3 +5,4 @@ build/
 *.xcodeproj/*.pbxuser
 *.xcodeproj/*.perspective*
 *.xcodeproj/*.mode1*
+*.dylib
