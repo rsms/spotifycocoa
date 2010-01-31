@@ -14,6 +14,7 @@
 @property(assign) id delegate;
 @property(readonly) CFRunLoopRef runloop;
 @property(readonly) CFRunLoopSourceRef runloopSource;
+@property(readonly) sp_session *session;
 
 + (void)setupWithApplicationKey:(NSData *)appkey
 									cacheLocation:(NSString *)cacheDirname
@@ -39,7 +40,7 @@
 
 
 @protocol SPSessionDelegate
-
+@optional
 - (void)sessionDidInitialize:(SPSession *)session;
 
 - (BOOL)session:(SPSession *)session shouldBeginForUserNamed:(NSString *)username;

@@ -269,7 +269,7 @@ static void rlsrc_perform(void *info) {
 
 @implementation SPSession
 
-@synthesize delegate=_delegate, runloop=_runloop, runloopSource=_runloopSource;
+@synthesize delegate=_delegate, runloop=_runloop, runloopSource=_runloopSource, session=_session;
 
 + (void)_setup_cacheLocation:(NSString *)cacheDirname
 					 settingsLocation:(NSString *)settingsDirname
@@ -339,6 +339,27 @@ static void rlsrc_perform(void *info) {
 #pragma mark Initialization and finalization
 
 - (int)_initSettingError:(NSError **)err {
+	struct sp_rlsrc_ctx *info = calloc(1, sizeof(struct sp_rlsrc_ctx));
+	info->self = self;
+	
+	CFRunLoopSourceContext ctx;
+	ctx.version = 0;
+	ctx.info = (void *)info;
+	ctx.retain = NULL;//&rlsrc_retain;
+	ctx.release = NULL;//&rlsrc_release;
+	ctx.copyDescription = NULL;
+	ctx.equal = NULL;
+	ctx.hash = NULL;
+	ctx.schedule = &rlsrc_schedule;
+	ctx.cancel = &rlsrc_cancel;
+	ctx.perform = &rlsrc_perform;
+
+	_runloop = CFRunLoopGetMain();
+	_runloopSource = CFRunLoopSourceCreate(kCFAllocatorDefault, 0, &ctx);
+
+	CFRunLoopAddSource(_runloop, _runloopSource, kCFRunLoopDefaultMode);
+
+
 	sp_error rc;
 
 	// Always do this. It allows libspotify to check for
@@ -387,27 +408,10 @@ static void rlsrc_perform(void *info) {
 		return rc;
 	}
 
-	_runloop = CFRunLoopGetMain();
 
-	struct sp_rlsrc_ctx *info = calloc(1, sizeof(struct sp_rlsrc_ctx));
-	info->self = self;
+
 	info->session = _session;
 
-	CFRunLoopSourceContext ctx;
-	ctx.version = 0;
-	ctx.info = (void *)info;
-	ctx.retain = NULL;//&rlsrc_retain;
-	ctx.release = NULL;//&rlsrc_release;
-	ctx.copyDescription = NULL;
-	ctx.equal = NULL;
-	ctx.hash = NULL;
-	ctx.schedule = &rlsrc_schedule;
-	ctx.cancel = &rlsrc_cancel;
-	ctx.perform = &rlsrc_perform;
-
-	_runloopSource = CFRunLoopSourceCreate(kCFAllocatorDefault, 0, &ctx);
-
-	CFRunLoopAddSource(_runloop, _runloopSource, kCFRunLoopDefaultMode);
 
 	CB_INVOKE_DELEGATE1(self, sessionDidInitialize:);
 	return rc;
