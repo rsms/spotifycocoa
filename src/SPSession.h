@@ -1,3 +1,5 @@
+#import <spotify/api.h>
+
 @class SPUser;
 
 @interface SPSession : NSObject {

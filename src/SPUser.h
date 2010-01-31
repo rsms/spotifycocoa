@@ -1,3 +1,4 @@
+#import <spotify/api.h>
 @interface SPUser : NSObject {
 	sp_user *_user;
 	NSString *_username;
