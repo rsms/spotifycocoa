@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
+		3824EC5F111796C4004454CB /* SPAlbumBrowse.h in Headers */ = {isa = PBXBuildFile; fileRef = 3824EC59111796C4004454CB /* SPAlbumBrowse.h */; };
+		3824EC60111796C4004454CB /* SPAlbumBrowse.m in Sources */ = {isa = PBXBuildFile; fileRef = 3824EC5A111796C4004454CB /* SPAlbumBrowse.m */; };
+		3824EC61111796C4004454CB /* SPArtistBrowse.h in Headers */ = {isa = PBXBuildFile; fileRef = 3824EC5B111796C4004454CB /* SPArtistBrowse.h */; };
+		3824EC62111796C4004454CB /* SPArtistBrowse.m in Sources */ = {isa = PBXBuildFile; fileRef = 3824EC5C111796C4004454CB /* SPArtistBrowse.m */; };
+		3824EC63111796C4004454CB /* SPSearch.h in Headers */ = {isa = PBXBuildFile; fileRef = 3824EC5D111796C4004454CB /* SPSearch.h */; };
+		3824EC64111796C4004454CB /* SPSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 3824EC5E111796C4004454CB /* SPSearch.m */; };
 		3A8C1C731114A52800CEF3B3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C1C711114A52800CEF3B3 /* AppDelegate.m */; };
 		3A8C1C741114A52800CEF3B3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8C1C721114A52800CEF3B3 /* main.m */; };
 		3ACE92A1111513F60001B94A /* Spotify.h in Headers */ = {isa = PBXBuildFile; fileRef = 3ACE929F111513ED0001B94A /* Spotify.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -64,6 +70,12 @@
 		1DDD58150DA1D0A300B32029 /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		3824EC59111796C4004454CB /* SPAlbumBrowse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPAlbumBrowse.h; path = src/SPAlbumBrowse.h; sourceTree = "<group>"; };
+		3824EC5A111796C4004454CB /* SPAlbumBrowse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPAlbumBrowse.m; path = src/SPAlbumBrowse.m; sourceTree = "<group>"; };
+		3824EC5B111796C4004454CB /* SPArtistBrowse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPArtistBrowse.h; path = src/SPArtistBrowse.h; sourceTree = "<group>"; };
+		3824EC5C111796C4004454CB /* SPArtistBrowse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPArtistBrowse.m; path = src/SPArtistBrowse.m; sourceTree = "<group>"; };
+		3824EC5D111796C4004454CB /* SPSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPSearch.h; path = src/SPSearch.h; sourceTree = "<group>"; };
+		3824EC5E111796C4004454CB /* SPSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPSearch.m; path = src/SPSearch.m; sourceTree = "<group>"; };
 		3A8C1C6B1114A4FF00CEF3B3 /* prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = prefix.pch; path = example/prefix.pch; sourceTree = "<group>"; };
 		3A8C1C701114A52800CEF3B3 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = example/AppDelegate.h; sourceTree = "<group>"; };
 		3A8C1C711114A52800CEF3B3 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = example/AppDelegate.m; sourceTree = "<group>"; };
@@ -114,6 +126,12 @@
 				3A8C1C7B1114A5DD00CEF3B3 /* SPSession.m */,
 				3ACE91FA1114BA4D0001B94A /* SPUser.h */,
 				3ACE91FB1114BA4D0001B94A /* SPUser.m */,
+				3824EC59111796C4004454CB /* SPAlbumBrowse.h */,
+				3824EC5A111796C4004454CB /* SPAlbumBrowse.m */,
+				3824EC5B111796C4004454CB /* SPArtistBrowse.h */,
+				3824EC5C111796C4004454CB /* SPArtistBrowse.m */,
+				3824EC5D111796C4004454CB /* SPSearch.h */,
+				3824EC5E111796C4004454CB /* SPSearch.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -174,6 +192,9 @@
 				3ACE92A1111513F60001B94A /* Spotify.h in Headers */,
 				3ACE92A4111514030001B94A /* SPUser.h in Headers */,
 				3ACE92A2111513FF0001B94A /* SPSession.h in Headers */,
+				3824EC5F111796C4004454CB /* SPAlbumBrowse.h in Headers */,
+				3824EC61111796C4004454CB /* SPArtistBrowse.h in Headers */,
+				3824EC63111796C4004454CB /* SPSearch.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,6 +283,9 @@
 			files = (
 				3ACE92C51115166C0001B94A /* SPSession.m in Sources */,
 				3ACE92C61115166C0001B94A /* SPUser.m in Sources */,
+				3824EC60111796C4004454CB /* SPAlbumBrowse.m in Sources */,
+				3824EC62111796C4004454CB /* SPArtistBrowse.m in Sources */,
+				3824EC64111796C4004454CB /* SPSearch.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
